@@ -33,7 +33,8 @@ public class InitialContext {
     private final CarDetailsService<SuspensionEntity> suspensionEntityCarDetailsService = new SimpleCarDetailsService<>(suspensionCarDetailsDao);
     private final CarDetailsService<EngineEntity> engineEntityCarDetailsService = new SimpleCarDetailsService<>(engineCarDetailsDaoCarDetailsDao);
     private final UserService simpleUserService = new SimpleUserService(simplePageServiceValidator, simplePageDao, bcryptWithSaltHasher);
-
+    private final SavedDao savedDao = new SimpleSavedDao(hikariCPConnectionPool);
+    private final SavedService savedService = new SimpleSavedService(savedDao);
     private final RequestFactory simpleRequestFactory = new SimpleRequestFactory();
 
     public Command lookup(String commandName) {
@@ -84,6 +85,30 @@ public class InitialContext {
             }
             case "deleteByIdAndType":{
                 return new DeleteDetailByIdAndType(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService);
+            }
+            case "saved":{
+                return new ShowSavedPageCommand(simpleRequestFactory,savedService);
+            }
+            case "getSavedByName":{
+                return new ShowSavedPageByNameCommand(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService,savedService);
+            }
+            case "delsessaved":{
+                return new DeleteFromSavedSessionCommand(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService);
+            }
+            case "addSaved":{
+                return new AddToSavedSessionCommand(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService);
+            }
+            case "clearSesSaved":{
+                return new ClearSessionSavedCommand(simpleRequestFactory);
+            }
+            case "saveSaved":{
+                return new SaveSavedCommand(simpleRequestFactory,savedService);
+            }
+            case "saveAnother":{
+                return new SaveAnotherCommand(simpleRequestFactory,savedService);
+            }
+            case "deleteSavedSSSS":{
+                return new DeleteSavedCommand(simpleRequestFactory,savedService);
             }
             default:
                 return new ShowMainPageCommand(simpleRequestFactory);

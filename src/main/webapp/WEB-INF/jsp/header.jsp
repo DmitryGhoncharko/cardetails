@@ -20,6 +20,7 @@
                 <a class="nav-link" href="/controller?command=/" role="button">Добавить новую деталь</a>
                 <a class="nav-link" href="/controller?command=task" role="button">Сформировать отчет</a>
                 <a class="nav-link" href="/controller?command=allDetails" role="button">Посмотреть добавленные детали</a>
+                <a class="nav-link" href="/controller?command=saved" role="button">Cохраненные отчеты</a>
                 <a class="btn btn-primary" href="/controller?command=logout" role="button">Выйти</a>
             </c:when>
             <c:otherwise>
