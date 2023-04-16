@@ -22,7 +22,7 @@ public class AddToSavedSessionCommand implements Command{
     public CommandResponse execute(CommandRequest request) throws ServiceError {
         String detailType = request.getParameter("type");
         String detailId = request.getParameter("id");
-        String savedName = String.valueOf(request.retrieveFromSession("name").get());
+        String savedName = new String(String.valueOf(request.retrieveFromSession("name").get()));
         if (proceed(request, detailType, detailId)) {
             return requestFactory.createRedirectResponse("/controller?command=getSavedByName&rewrite=false&name=" + savedName);
         }

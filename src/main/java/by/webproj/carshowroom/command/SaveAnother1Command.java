@@ -9,39 +9,39 @@ import lombok.RequiredArgsConstructor;
 import java.util.*;
 
 @RequiredArgsConstructor
-public class SaveAnotherCommand implements Command {
+public class SaveAnother1Command implements Command {
     private final RequestFactory requestFactory;
     private final SavedService savedService;
 
     @Override
     public CommandResponse execute(CommandRequest request) throws ServiceError {
         String savedName = request.getParameter("name");
-        Optional<Object> objectOptional = request.retrieveFromSession("engineEntities");
+        Optional<Object> objectOptional = request.retrieveFromSession("engines");
         List<EngineEntity> engineEntities = null;
         if(objectOptional.isPresent()){
             engineEntities = (List<EngineEntity>) objectOptional.get();
         }
-        Optional<Object> objectOptional1 = request.retrieveFromSession("suspensionEntities");
+        Optional<Object> objectOptional1 = request.retrieveFromSession("suspensions");
         List<SuspensionEntity> suspensionEntities = null;
         if(objectOptional1.isPresent()){
             suspensionEntities = (List<SuspensionEntity>) objectOptional1.get();
         }
-        Optional<Object> objectOptional2 = request.retrieveFromSession("bodyEntities");
+        Optional<Object> objectOptional2 = request.retrieveFromSession("bodies");
         List<BodyEntity> bodyEntities = null;
         if(objectOptional2.isPresent()){
-           bodyEntities = (List<BodyEntity>) objectOptional2.get();
+            bodyEntities = (List<BodyEntity>) objectOptional2.get();
         }
-        Optional<Object> objectOptional3 = request.retrieveFromSession("salonEntities");
+        Optional<Object> objectOptional3 = request.retrieveFromSession("salons");
         List<SalonEntity> salonEntities = null;
         if(objectOptional3.isPresent()){
             salonEntities  = (List<SalonEntity>) objectOptional3.get();
         }
-        Optional<Object> objectOptional4 = request.retrieveFromSession("separaterlyEntities");
+        Optional<Object> objectOptional4 = request.retrieveFromSession("separaters");
         List<SeparaterlyEntity> separaterlyEntities = null;
         if(objectOptional4.isPresent()){
             separaterlyEntities = (List<SeparaterlyEntity>) objectOptional4.get();
         }
-        Optional<Object> objectOptional5 = request.retrieveFromSession("additionEntities");
+        Optional<Object> objectOptional5 = request.retrieveFromSession("additions");
         List<AdditionEntity> additionEntities = null;
         if(objectOptional5.isPresent()){
             additionEntities = (List<AdditionEntity>) objectOptional5.get();

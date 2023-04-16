@@ -86,12 +86,12 @@ public class SimpleSavedDao implements SavedDao {
     @Override
     public boolean updateByNameAndId(SavedEntity savedEntity) throws DaoException {
         try (Connection connection = connectionPool.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_SAVED_BY_NAME_AND_ID)) {
-            preparedStatement.setLong(1, savedEntity.getAdditionEntity() == null ? null : savedEntity.getAdditionEntity().getId());
-            preparedStatement.setLong(2, savedEntity.getBodyEntity() == null ? null : savedEntity.getBodyEntity().getId());
-            preparedStatement.setLong(3, savedEntity.getEngineEntity() == null ? null : savedEntity.getEngineEntity().getId());
-            preparedStatement.setLong(4, savedEntity.getSalonEntity() == null ? null : savedEntity.getSalonEntity().getId());
-            preparedStatement.setLong(5, savedEntity.getSeparaterlyEntity() == null ? null : savedEntity.getSeparaterlyEntity().getId());
-            preparedStatement.setLong(6, savedEntity.getSuspensionEntity() == null ? null : savedEntity.getSuspensionEntity().getId());
+            preparedStatement.setLong(1, savedEntity.getAdditionEntity() == null ? -1 : savedEntity.getAdditionEntity().getId());
+            preparedStatement.setLong(2, savedEntity.getBodyEntity() == null ? -1 : savedEntity.getBodyEntity().getId());
+            preparedStatement.setLong(3, savedEntity.getEngineEntity() == null ? -1 : savedEntity.getEngineEntity().getId());
+            preparedStatement.setLong(4, savedEntity.getSalonEntity() == null ? -1 : savedEntity.getSalonEntity().getId());
+            preparedStatement.setLong(5, savedEntity.getSeparaterlyEntity() == null ? -1 : savedEntity.getSeparaterlyEntity().getId());
+            preparedStatement.setLong(6, savedEntity.getSuspensionEntity() == null ? -1 : savedEntity.getSuspensionEntity().getId());
             preparedStatement.setInt(7, savedEntity.getAdditionCount());
             preparedStatement.setInt(8, savedEntity.getBodyCount());
             preparedStatement.setInt(9, savedEntity.getEngineCount());
@@ -111,12 +111,12 @@ public class SimpleSavedDao implements SavedDao {
     public void create(List<SavedEntity> savedEntities) throws DaoException {
         try (Connection connection = connectionPool.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_SAVED)) {
             for (SavedEntity savedEntity : savedEntities) {
-                preparedStatement.setLong(1, savedEntity.getAdditionEntity() == null ? null : savedEntity.getAdditionEntity().getId());
-                preparedStatement.setLong(2, savedEntity.getBodyEntity() == null ? null : savedEntity.getBodyEntity().getId());
-                preparedStatement.setLong(3, savedEntity.getEngineEntity() == null ? null : savedEntity.getEngineEntity().getId());
-                preparedStatement.setLong(4, savedEntity.getSalonEntity() == null ? null : savedEntity.getSalonEntity().getId());
-                preparedStatement.setLong(5, savedEntity.getSeparaterlyEntity() == null ? null : savedEntity.getSeparaterlyEntity().getId());
-                preparedStatement.setLong(6, savedEntity.getSuspensionEntity() == null ? null : savedEntity.getSuspensionEntity().getId());
+                preparedStatement.setLong(1, savedEntity.getAdditionEntity() == null ? -1 : savedEntity.getAdditionEntity().getId());
+                preparedStatement.setLong(2, savedEntity.getBodyEntity() == null ? -1 : savedEntity.getBodyEntity().getId());
+                preparedStatement.setLong(3, savedEntity.getEngineEntity() == null ? -1 : savedEntity.getEngineEntity().getId());
+                preparedStatement.setLong(4, savedEntity.getSalonEntity() == null ? -1 : savedEntity.getSalonEntity().getId());
+                preparedStatement.setLong(5, savedEntity.getSeparaterlyEntity() == null ? -1 : savedEntity.getSeparaterlyEntity().getId());
+                preparedStatement.setLong(6, savedEntity.getSuspensionEntity() == null ? -1 : savedEntity.getSuspensionEntity().getId());
                 preparedStatement.setInt(7, savedEntity.getAdditionCount());
                 preparedStatement.setInt(8, savedEntity.getBodyCount());
                 preparedStatement.setInt(9, savedEntity.getEngineCount());

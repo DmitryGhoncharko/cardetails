@@ -110,6 +110,9 @@ public class InitialContext {
             case "deleteSavedSSSS":{
                 return new DeleteSavedCommand(simpleRequestFactory,savedService);
             }
+            case "saveAnother1":{
+                return new SaveAnother1Command(simpleRequestFactory,savedService);
+            }
             default:
                 return new ShowMainPageCommand(simpleRequestFactory);
         }

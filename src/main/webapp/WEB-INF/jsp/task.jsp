@@ -55,6 +55,13 @@
                     <a class="noprint" href="/controller?command=clearSes">Очистить лист</a>
                     <br>
                     <br>
+                    <form action="/controller?command=saveAnother1" method="post">
+                        <label for="1111">Введите новое имя</label>
+                        <input type="text" name="name" id="1111">
+                        <br>
+                        <br>
+                        <button type="submit">Сохранить как новый</button>
+                    </form>
                 </div>
             </div>
             <div class="row">
