@@ -12,7 +12,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class HikariCPConnectionPool implements ConnectionPool{
+public class HikariCPConnectionPool implements ConnectionPool {
     private static final Logger LOG = LoggerFactory.getLogger(HikariCPConnectionPool.class);
     private static final HikariConfig CONFIG = new HikariConfig();
     private static final Properties PROPERTIES = new Properties();

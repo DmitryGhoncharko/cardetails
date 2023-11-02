@@ -185,18 +185,15 @@
                 <div class="form-group">
                     <input type="text" pattern="^[a-zA-Z0-9]{6,100}$" class="form-control needs-validation" id="validationServer03" name="login" placeholder="Ваш логин" required>
                     <div class="invalid-feedback">
-                        Логин должен быть минимум 6 символов, логин может содержать латинские буквы и цифры
+                        Логин должен быть минимум 6 символов, логин может содержать только латинские буквы и цифры
                     </div>
                 </div>
 
                 <div class="form-group help">
-                    <input type="password" name="password"  pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,100}$" class="form-control needs-validation" id="inputPassword" placeholder="Ваш пароль" required>
+                    <input type="password" name="password"  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$" class="form-control needs-validation" id="inputPassword" placeholder="Ваш пароль" required>
                     <div class="invalid-feedback">
-                        Пароль должен быть минимум шесть символов, пароль должен содержать буквы цифры и спец символы
+                        Пароль должен быть минимум шесть символов, пароль должен содержать латинские буквы и цифры
                     </div>
-                </div>
-                <div class="form-group help">
-                    <input type="text" name="code"   class="form-control needs-validation" id="inputPassword1" placeholder="Секретный код" required>
                 </div>
                 <div class="form-group">
                     <div class="row">

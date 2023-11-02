@@ -7,7 +7,7 @@ public class SimpleUserValidator implements UserValidator {
 
     private static final String LOGIN_REGEXP = "^[a-zA-Z0-9]{6,100}$";
 
-    private static final String PASSWORD_REGEXP = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,100}$";
+    private static final String PASSWORD_REGEXP = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$";
 
 //    private static final String SECRET_KEY_REGEXP = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{10,100}$";
 

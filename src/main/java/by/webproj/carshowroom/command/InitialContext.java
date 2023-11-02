@@ -1,7 +1,6 @@
 package by.webproj.carshowroom.command;
 
-import by.webproj.carshowroom.command.delete.*;
-import by.webproj.carshowroom.command.page.*;
+
 import by.webproj.carshowroom.controller.RequestFactory;
 import by.webproj.carshowroom.controller.SimpleRequestFactory;
 import by.webproj.carshowroom.entity.*;
@@ -20,23 +19,12 @@ public class InitialContext {
     private final UserDao simplePageDao = new SimpleUserDao(hikariCPConnectionPool);
     private final UserValidator simplePageServiceValidator = new SimpleUserValidator();
     private final PasswordHasher bcryptWithSaltHasher = new BcryptWithSaltHasherImpl();
-    private final EngineCarDetailsDao engineCarDetailsDaoCarDetailsDao = new EngineCarDetailsDao(hikariCPConnectionPool);
-    private final AdditionCarDetailsDao additionCarDetailsDao = new AdditionCarDetailsDao(hikariCPConnectionPool);
-    private final BodyCarDetailsDao bodyCarDetailsDao = new BodyCarDetailsDao(hikariCPConnectionPool);
-    private final SalonCarDetailsDao salonCarDetailsDao = new SalonCarDetailsDao(hikariCPConnectionPool);
-    private final SeparateCarDetailsDao separateCarDetailsDao = new SeparateCarDetailsDao(hikariCPConnectionPool);
-    private final SuspensionCarDetailsDao suspensionCarDetailsDao = new SuspensionCarDetailsDao(hikariCPConnectionPool);
-    private final CarDetailsService<AdditionEntity> additionEntityCarDetailsService = new SimpleCarDetailsService<>(additionCarDetailsDao);
-    private final CarDetailsService<SeparaterlyEntity> separaterlyEntityCarDetailsService = new SimpleCarDetailsService<>(separateCarDetailsDao);
-    private final CarDetailsService<SalonEntity> salonEntityCarDetailsService = new SimpleCarDetailsService<>(salonCarDetailsDao);
-    private final CarDetailsService<BodyEntity> bodyEntityCarDetailsService = new SimpleCarDetailsService<>(bodyCarDetailsDao);
-    private final CarDetailsService<SuspensionEntity> suspensionEntityCarDetailsService = new SimpleCarDetailsService<>(suspensionCarDetailsDao);
-    private final CarDetailsService<EngineEntity> engineEntityCarDetailsService = new SimpleCarDetailsService<>(engineCarDetailsDaoCarDetailsDao);
-    private final UserService simpleUserService = new SimpleUserService(simplePageServiceValidator, simplePageDao, bcryptWithSaltHasher);
-    private final SavedDao savedDao = new SimpleSavedDao(hikariCPConnectionPool);
-    private final SavedService savedService = new SimpleSavedService(savedDao);
-    private final RequestFactory simpleRequestFactory = new SimpleRequestFactory();
 
+    private final UserService simpleUserService = new SimpleUserService(simplePageServiceValidator, simplePageDao, bcryptWithSaltHasher);
+    private final RequestFactory simpleRequestFactory = new SimpleRequestFactory();
+    private final TestDao testDao= new TestDao(hikariCPConnectionPool);
+    private final AnswerDao answerDao=  new AnswerDao(hikariCPConnectionPool);
+    private final QuestionDao questionDao = new QuestionDao(hikariCPConnectionPool);
     public Command lookup(String commandName) {
 
         switch (commandName) {
@@ -50,69 +38,30 @@ public class InitialContext {
                 return new ShowRegistrationPageCommand(simpleRequestFactory);
             case "registrationcmnd":
                 return new RegistrationCommand(simpleUserService, simpleRequestFactory);
-            case "addNewDetail":
-                return new AddDetailCommand(simpleRequestFactory, engineEntityCarDetailsService, suspensionEntityCarDetailsService, bodyEntityCarDetailsService, salonEntityCarDetailsService, separaterlyEntityCarDetailsService, additionEntityCarDetailsService);
-            case "task":
-                return new ShowTaskPageCommand(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService);
-            case "allDetails":
-                return new ShowAllDetailsPageCommand(simpleRequestFactory, additionEntityCarDetailsService, bodyEntityCarDetailsService, engineEntityCarDetailsService, salonEntityCarDetailsService, separaterlyEntityCarDetailsService, suspensionEntityCarDetailsService);
-            case "deleteAddition":
-                return new DeleteAdditionCommand(simpleRequestFactory, additionEntityCarDetailsService);
-            case "deleteSep":
-                return new DeleteSepCommand(simpleRequestFactory, separaterlyEntityCarDetailsService);
-            case "deleteSalon":
-                return new DeleteSalonCommand(simpleRequestFactory, salonEntityCarDetailsService);
-            case "deleteBody":
-                return new DeleteBodyCommand(simpleRequestFactory, bodyEntityCarDetailsService);
-            case "deleteSuspension":
-                return new DeleteSuspensionCommand(simpleRequestFactory, suspensionEntityCarDetailsService);
-            case "deleteEngine":
-                return new DeleteEngineCommand(simpleRequestFactory, engineEntityCarDetailsService);
-            case "getDetailById": {
-                return new GetDetailByTypeIdCommand(simpleRequestFactory, additionEntityCarDetailsService, bodyEntityCarDetailsService, engineEntityCarDetailsService, salonEntityCarDetailsService, separaterlyEntityCarDetailsService, suspensionEntityCarDetailsService);
-            }
-            case "updateDetail": {
-                return new UpdateDetailByIdAndTypeCommand(simpleRequestFactory, additionEntityCarDetailsService, bodyEntityCarDetailsService, engineEntityCarDetailsService, salonEntityCarDetailsService, separaterlyEntityCarDetailsService, suspensionEntityCarDetailsService);
-            }
-            case "addToSession":{
-                return new AddToSessionCommand(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService);
-            }
-            case "clearSes":{
-                return new ClearSessionCommand(simpleRequestFactory);
-            }
-            case "delses":{
-                return new DeleteFromSessionCommand(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService);
-            }
-            case "deleteByIdAndType":{
-                return new DeleteDetailByIdAndType(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService);
-            }
-            case "saved":{
-                return new ShowSavedPageCommand(simpleRequestFactory,savedService);
-            }
-            case "getSavedByName":{
-                return new ShowSavedPageByNameCommand(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService,savedService);
-            }
-            case "delsessaved":{
-                return new DeleteFromSavedSessionCommand(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService);
-            }
-            case "addSaved":{
-                return new AddToSavedSessionCommand(simpleRequestFactory,additionEntityCarDetailsService,bodyEntityCarDetailsService,engineEntityCarDetailsService,salonEntityCarDetailsService,separaterlyEntityCarDetailsService,suspensionEntityCarDetailsService);
-            }
-            case "clearSesSaved":{
-                return new ClearSessionSavedCommand(simpleRequestFactory);
-            }
-            case "saveSaved":{
-                return new SaveSavedCommand(simpleRequestFactory,savedService);
-            }
-            case "saveAnother":{
-                return new SaveAnotherCommand(simpleRequestFactory,savedService);
-            }
-            case "deleteSavedSSSS":{
-                return new DeleteSavedCommand(simpleRequestFactory,savedService);
-            }
-            case "saveAnother1":{
-                return new SaveAnother1Command(simpleRequestFactory,savedService);
-            }
+            case "test":
+                return new ShowTestPageCommand(testDao,simpleRequestFactory);
+            case "startTest":
+                return new StartTestCommand(answerDao,questionDao,simpleRequestFactory);
+            case "cabAdmin":
+                return new ShowCabAdminPageCommand(simpleRequestFactory, (SimpleUserDao) simplePageDao);
+            case "showTests":
+                return new ShowTestsAdminCommand(simpleRequestFactory,testDao);
+            case "createTest":
+                return new ShowCreateTestPageCommand(simpleRequestFactory);
+            case "addTest":
+                return new AddTestCommand(simpleRequestFactory,testDao,answerDao,questionDao);
+            case "editTest":
+                return new ShowEditTestPageCommand(simpleRequestFactory,testDao,questionDao,answerDao);
+            case "updateTest":
+                return new UpdateTestCommand(simpleRequestFactory,testDao);
+            case "updateQuestion":
+                return new UpdateQuestionCommand(simpleRequestFactory,questionDao);
+            case "updateAnswer":
+                return new UpdateAnswerCommand(simpleRequestFactory,answerDao,questionDao);
+            case "addQuestion":
+                return  new ShowAddNewQuestionPageCommand(simpleRequestFactory,testDao);
+            case "addNewQuestion":
+                return new AddQuestionComand(simpleRequestFactory,questionDao,answerDao);
             default:
                 return new ShowMainPageCommand(simpleRequestFactory);
         }

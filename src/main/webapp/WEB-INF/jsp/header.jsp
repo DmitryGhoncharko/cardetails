@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page import="by.webproj.carshowroom.entity.Role" %>
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -17,10 +17,13 @@
 
         <c:choose>
             <c:when test="${not empty sessionScope.user}">
-                <a class="nav-link" href="/controller?command=/" role="button">Добавить новую деталь</a>
-                <a class="nav-link" href="/controller?command=task" role="button">Сформировать отчет</a>
-                <a class="nav-link" href="/controller?command=allDetails" role="button">Посмотреть добавленные детали</a>
-                <a class="nav-link" href="/controller?command=saved" role="button">Cохраненные отчеты</a>
+                <a class="nav-link" href="/controller?command=test" role="button">Пройти тест по английскому</a>
+<%--                <c:if test="${sessionScope.user.role eq Role.CLIENT}">--%>
+<%--                    <a class="nav-link" href="/controller?command=cab" role="button">Личный кабинет</a>--%>
+<%--                </c:if>--%>
+                <c:if test="${sessionScope.user.role eq Role.ADMIN}">
+                    <a class="nav-link" href="/controller?command=cabAdmin" role="button">Личный кабинет</a>
+                </c:if>
                 <a class="btn btn-primary" href="/controller?command=logout" role="button">Выйти</a>
             </c:when>
             <c:otherwise>

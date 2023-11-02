@@ -36,7 +36,7 @@ public class LoginCommand implements Command {
             request.clearSession();
             request.createSession();
             request.addToSession(USER_SESSION_ATTRIBUTE_NAME, userFromDatabase.get());
-            return requestFactory.createRedirectResponse(PagePath.INDEX_PATH.getPath());
+            return requestFactory.createRedirectResponse("/controller?command=main_page");
         }
         request.addAttributeToJsp(ERROR_LOGIN_PASS_ATTRIBUTE, ERROR_LOGIN_PASS_MESSAGE);
         return requestFactory.createForwardResponse(PagePath.LOGIN_PAGE.getPath());

@@ -24,6 +24,78 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <html>
+<head>
+  <title>Главная страница</title>
+</head>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
+  * {
+    box-sizing: border-box;
+  }
+
+
+
+  .quiz-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+    width: 600px;
+    max-width: 95vw;
+    overflow: hidden;
+    margin: 0 auto; /* Добавьте эту строку для горизонтального центрирования */
+    display: flex;
+    flex-direction: column; /* Чтобы содержимое центрировалось вертикально */
+    justify-content: center; /* Чтобы содержимое центрировалось вертикально */
+    align-items: center; /* Чтобы содержимое центрировалось горизонтально */
+  }
+
+  .quiz-header {
+    padding: 4rem;
+    text-align: center; /* Для центрирования текста внутри .quiz-header */
+  }
+
+  h2 {
+    padding: 1rem;
+    text-align: center;
+    margin: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  ul li {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+
+  ul li label {
+    cursor: pointer;
+  }
+
+  button {
+    background-color: #8e44ad;
+    color: #fff;
+    border: none;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-family: inherit;
+    padding: 1.3rem;
+  }
+
+  button:hover {
+    background-color: #732d91;
+  }
+
+  button:focus {
+    outline: none;
+    background-color: #5e3370;
+  }
+
+</style>
 <body>
 <div class="container-fluid">
   <div class="row">
@@ -38,50 +110,13 @@
           <div class="row">
             <div class="col-md-12">
               <h3 class="text-center">
-                Страница добавления типа деталей машины
+              Test English Now
               </h3>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <form role="form" action="/controller?command=addNewDetail" method="post">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">
-                    Тип детали
-                  </label>
-                  <div class="input-group mb-3" id="exampleInputEmail1">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text" for="inputGroupSelect01">Выберите</label>
-                    </div>
-                    <select class="custom-select" id="inputGroupSelect01" name="detailType">
-                      <option selected>Тип детали</option>
-                      <option value="1">Мотор</option>
-                      <option value="2">Подвеска</option>
-                      <option value="3">Кузов</option>
-                      <option value="4">Салон</option>
-                      <option value="5">Отдельно</option>
-                      <option value="6">Дополнительно</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-
-                  <label for="exampleInputPassword1">
-                    Название детали
-                  </label>
-                  <input required type="text" class="form-control" name="detailName" id="exampleInputPassword1" />
-                  <label for="exampleInputPassword2">
-                    Вес детали
-                  </label>
-                  <input required type="text" pattern="^[0-9]*[.,]{0,1}[0-9]+$" class="form-control" name="detailWeight" id="exampleInputPassword2" />
-                </div>
-                <c:if test="${not empty requestScope.error}">
-                  <h1>Не получилось добавить деталь.Возможно деталь с таким именем уже существует!</h1>
-                </c:if>
-                <button type="submit" class="btn btn-primary">
-                  Добавить деталь
-                </button>
-              </form>
+              <img src="/img/main_image.png" style="width: 100%">
             </div>
           </div>
         </div>
