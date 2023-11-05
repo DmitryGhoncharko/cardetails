@@ -16,7 +16,7 @@ public class RoleFilter implements Filter {
             if (commandName == null || commandName.equals("login") || commandName.equals("logout") || commandName.equals("logincmnd") || commandName.equals("test") || commandName.equals("startTest") || commandName.equals("/")) {
                 chain.doFilter(request,response);
             }else {
-                httpServletResponse.sendRedirect("/controller?command=login");
+                httpServletResponse.sendRedirect("/controller?command=main_page");
             }
         }else {
             chain.doFilter(request, response);
