@@ -26,6 +26,7 @@
 <html>
 <head>
   <title>Главная страница</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");

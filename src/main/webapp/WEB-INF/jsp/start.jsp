@@ -42,7 +42,10 @@
         box-sizing: border-box;
     }
 
-
+    .correct-answer {
+        background-color: green !important;
+        color: white !important;
+    }
 
     .quiz-container {
         background-color: #fff;
@@ -194,7 +197,14 @@
                                                });
                                                return answer;
                                            };
+                                           const removeHighlight = () => {
+                                               const highlightedAnswer = document.querySelector(".correct-answer");
+                                               if (highlightedAnswer) {
+                                                   highlightedAnswer.classList.remove("correct-answer");
+                                               }
+                                           };
                                            const loadQuiz = () => {
+                                               removeHighlight();
                                                deselectAnswers();
                                                const currentQuizData = quizData[currentQuiz];
                                                questionElement.innerText = currentQuizData.question;
@@ -204,16 +214,32 @@
                                                d_text.innerText = currentQuizData.d;
                                            };
                                            loadQuiz();
+
+                                           const highlightCorrectAnswer = () => {
+                                               // Найдите правильный ответ в массиве
+                                               const correctAnswer = quizData[currentQuiz].correct;
+
+                                               // Подсветите правильный ответ, добавив класс "correct-answer"
+                                               const correctAnswerElement = document.getElementById(correctAnswer);
+                                               if (correctAnswerElement) {
+                                                   correctAnswerElement.parentElement.classList.add("correct-answer");
+                                               }
+                                           };
                                            submitButton.addEventListener("click", () => {
                                                const answer = getSelected();
                                                if (answer) {
-                                                   if (answer === quizData[currentQuiz].correct) score++;
+                                                   if (answer === quizData[currentQuiz].correct) {
+                                                       score++;
+                                                   }
+                                                   highlightCorrectAnswer(); // Подсветить правильный ответ
                                                    currentQuiz++;
-                                                   if (currentQuiz < quizData.length) loadQuiz();
-                                                   else {
-                                                       quiz.innerHTML = ` <h2>You answered `  + score + `/` +  quizData.length + ` questions correctly</h2>
-                <button onclick="history.go(0)">Play Again</button> `
-                                                       // location.reload() won't work in CodePen for security reasons; } } });
+
+                                                   if (currentQuiz < quizData.length) {
+                                                       // Задержка перед загрузкой следующего вопроса (при необходимости)
+                                                       setTimeout(loadQuiz, 1000);
+                                                   } else {
+                                                       quiz.innerHTML = `<h2>You answered `  + score + `/` +  quizData.length + ` questions correctly</h2>
+                <button onclick="history.go(0)">Play Again</button>`;
                                                    }
                                                }
                                            });

@@ -13,7 +13,7 @@ public class RoleFilter implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         String commandName = request.getParameter("command");
         if (httpServletRequest.getSession(false) == null || httpServletRequest.getSession(false).getAttribute("user") == null) {
-            if (commandName == null || commandName.equals("login") || commandName.equals("logout") || commandName.equals("logincmnd") || commandName.equals("registration") || commandName.equals("registrationcmnd") || commandName.equals("/")) {
+            if (commandName == null || commandName.equals("login") || commandName.equals("logout") || commandName.equals("logincmnd") || commandName.equals("test") || commandName.equals("startTest") || commandName.equals("/")) {
                 chain.doFilter(request,response);
             }else {
                 httpServletResponse.sendRedirect("/controller?command=login");

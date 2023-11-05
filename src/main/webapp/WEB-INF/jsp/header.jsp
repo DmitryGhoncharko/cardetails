@@ -15,22 +15,15 @@
 <div class="container-fluide">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <c:choose>
-            <c:when test="${not empty sessionScope.user}">
+        <
                 <a class="nav-link" href="/controller?command=test" role="button">Пройти тест по английскому</a>
 <%--                <c:if test="${sessionScope.user.role eq Role.CLIENT}">--%>
 <%--                    <a class="nav-link" href="/controller?command=cab" role="button">Личный кабинет</a>--%>
 <%--                </c:if>--%>
                 <c:if test="${sessionScope.user.role eq Role.ADMIN}">
                     <a class="nav-link" href="/controller?command=cabAdmin" role="button">Личный кабинет</a>
+                    <a class="btn btn-primary" href="/controller?command=logout" role="button">Выйти</a>
                 </c:if>
-                <a class="btn btn-primary" href="/controller?command=logout" role="button">Выйти</a>
-            </c:when>
-            <c:otherwise>
-                <a class="btn btn-primary" href="/controller?command=login" role="button">Войти</a>
-                <a class="nav-link" href="/controller?command=registration" role="button">Регистрация</a>
-            </c:otherwise>
-        </c:choose>
     </nav>
 </div>
 </header>
