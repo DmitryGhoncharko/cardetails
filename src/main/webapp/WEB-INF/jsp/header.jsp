@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="by.webproj.carshowroom.entity.Role" %>
+
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -16,14 +16,17 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
         <
-                <a class="nav-link" href="/controller?command=test" role="button">Пройти тест по английскому</a>
+                <a class="nav-link" href="/controller?command=category" role="button">Посмотреть список категорий</a>
+
+                <a class="nav-link" href="/controller?command=taskRev" role="button">Проверить выполненные задания</a>
+
 <%--                <c:if test="${sessionScope.user.role eq Role.CLIENT}">--%>
 <%--                    <a class="nav-link" href="/controller?command=cab" role="button">Личный кабинет</a>--%>
 <%--                </c:if>--%>
-                <c:if test="${sessionScope.user.role eq Role.ADMIN}">
-                    <a class="nav-link" href="/controller?command=cabAdmin" role="button">Личный кабинет</a>
+
+
                     <a class="btn btn-primary" href="/controller?command=logout" role="button">Выйти</a>
-                </c:if>
+
     </nav>
 </div>
 </header>

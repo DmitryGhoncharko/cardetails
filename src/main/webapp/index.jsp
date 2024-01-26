@@ -5,6 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-   <jsp:forward page="/controller?command=main_page"></jsp:forward>
+   <jsp:forward page="/controller?command=login"></jsp:forward>
 </body>
 </html>

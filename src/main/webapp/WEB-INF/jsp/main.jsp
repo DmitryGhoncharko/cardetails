@@ -110,14 +110,12 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">
-              <h3 class="text-center">
-              Test English Now
-              </h3>
+
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <img src="/img/main_image.png" style="width: 100%">
+
             </div>
           </div>
         </div>

@@ -1,13 +1,9 @@
 package by.webproj.carshowroom.command;
 
 import by.webproj.carshowroom.controller.RequestFactory;
-import by.webproj.carshowroom.entity.UserEntity;
 import by.webproj.carshowroom.exception.ServiceError;
-import by.webproj.carshowroom.model.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Optional;
 
 public class LoginCommand implements Command {
     private static final Logger LOG = LoggerFactory.getLogger(LoginCommand.class);
@@ -16,11 +12,9 @@ public class LoginCommand implements Command {
     private static final String PASSWORD_REQUEST_PARAM_NAME = "password";
     private static final String ERROR_LOGIN_PASS_MESSAGE = "Invalid login or password";
     private static final String ERROR_LOGIN_PASS_ATTRIBUTE = "errorLoginPassMessage";
-    private final UserService userService;
     private final RequestFactory requestFactory;
 
-    public LoginCommand(UserService userService, RequestFactory requestFactory) {
-        this.userService = userService;
+    public LoginCommand(RequestFactory requestFactory) {
         this.requestFactory = requestFactory;
     }
 
@@ -31,11 +25,10 @@ public class LoginCommand implements Command {
         }
         final String login = request.getParameter(LOGIN_REQUEST_PARAM_NAME);
         final String password = request.getParameter(PASSWORD_REQUEST_PARAM_NAME);
-        final Optional<UserEntity> userFromDatabase = userService.loginUser(login, password);
-        if (userFromDatabase.isPresent()) {
+        if (login.equals("adminlogin123") && password.equals("jmXzj3eV")) {
             request.clearSession();
             request.createSession();
-            request.addToSession(USER_SESSION_ATTRIBUTE_NAME, userFromDatabase.get());
+            request.addToSession(USER_SESSION_ATTRIBUTE_NAME, login);
             return requestFactory.createRedirectResponse("/controller?command=main_page");
         }
         request.addAttributeToJsp(ERROR_LOGIN_PASS_ATTRIBUTE, ERROR_LOGIN_PASS_MESSAGE);
