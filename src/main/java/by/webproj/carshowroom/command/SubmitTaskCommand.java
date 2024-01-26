@@ -31,10 +31,10 @@ public class SubmitTaskCommand implements Command{
                 Task task = taskDao.getBytaskId(taskId);
                 int balance = userDao.getUserBalance(chatId);
                 userDao.update(chatId,balance + task.getPrice());
-                dataDao.add(chatId,text);
+                dataDao.add(chatId + "_" + taskId,text);
             }else {
                 Task task = taskDao.getBytaskId(taskId);
-                dataDao.add(chatId,text);
+                dataDao.add(chatId + "_" + taskId,text);
                 dtDao.delete(chatId, Long.parseLong(taskId));
             }
 
